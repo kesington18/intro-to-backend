@@ -46,6 +46,24 @@ const registerUser = async (req, res) => {
     }
 }
 
+// login user
+const loginUser = async (req, res) => {
+    try {
+        // checking if the user already exist
+        const { email, password } = req.body;
+
+        const user = await User.findOne({
+            email: email.tolowerCase()
+        });
+
+        if(!user)return res.status(404).json({
+            message: "User not found"
+        });
+    } catch (error) {
+        
+    }
+}
+
 export {
     registerUser
 }
